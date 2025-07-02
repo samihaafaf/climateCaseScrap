@@ -38,9 +38,7 @@ def add_file_info(link):
     driver.get(website) 
     contents = driver.find_element(By.XPATH, "/html/body/div[1]/div/div/main/article/div/div[2]/ul") # assuming the first table is the one you want
 
-
     li_list = contents.find_elements(By.TAG_NAME, "li")
-    
 
     for i, li in enumerate(li_list):
         
@@ -57,17 +55,18 @@ def add_file_info(link):
                     col5 = cells[4].text.strip()
 
                     if col5:  # only add if col5 is NOT empty
-                            entry_data["rows"].append({
-                                "Filing Data": col1,
-                                "Action taken": col4,
-                                "Summary": col5
-                            })
+                        entry_data["rows"].append({
+                            "Filing Data": col1,
+                            "Action taken": col4,
+                            "Summary": col5
+                        })
             if entry_data["rows"]:
                 data.append(entry_data)
 
         except:
             continue
-        driver.quit()
+
+    driver.quit()
 
 
 # links = links[0:10] 
